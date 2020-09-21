@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vuex和Reudx的公共状态管理的应用场景 | 蒋冠的博客</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    <link rel="icon" href="/blogs.png">
+    <meta name="description" content="我的个人技术博客">
+    <link rel="preload" href="/assets/css/0.styles.f3ed8526.css" as="style"><link rel="preload" href="/assets/js/app.b791c0bc.js" as="script"><link rel="preload" href="/assets/js/2.d4667c1a.js" as="script"><link rel="preload" href="/assets/js/6.a6c9f08a.js" as="script"><link rel="prefetch" href="/assets/js/3.48ee14ba.js"><link rel="prefetch" href="/assets/js/4.f9f58974.js"><link rel="prefetch" href="/assets/js/5.a88921c4.js"><link rel="prefetch" href="/assets/js/7.f00e1e3f.js"><link rel="prefetch" href="/assets/js/8.50c32000.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f3ed8526.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">蒋冠的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>HTML和CSS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>原生JS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Vue</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Vuex&amp;Reudx'sApplication.html" aria-current="page" class="active sidebar-link">Vuex和Reudx的公共状态管理的应用场景</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Vuex&amp;Reudx'sApplication.html#特点" class="sidebar-link">特点：</a></li><li class="sidebar-sub-header"><a href="/Vuex&amp;Reudx'sApplication.html#应用场景" class="sidebar-link">应用场景：</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vuex和reudx的公共状态管理的应用场景"><a href="#vuex和reudx的公共状态管理的应用场景" class="header-anchor">#</a> Vuex和Reudx的公共状态管理的应用场景</h1> <h2 id="特点"><a href="#特点" class="header-anchor">#</a> 特点：</h2> <p>类似于一个全局变量（容器），页面不刷新信息能够存储，页面刷新信息就回归初始值了（一般应用于单页面应用）。</p> <p>单页面应用在第一次加载之后跳转时不再刷新页面。</p> <h2 id="应用场景"><a href="#应用场景" class="header-anchor">#</a> 应用场景：</h2> <ol><li>实现组件之间的信息通信。</li> <li>存储一些数据（把一些数据做缓存，比如登录态信息）。<br>
+为什么不使用本地存储呢？因为：
+<ul><li>（1）本地存储是明文存储，不安全；</li> <li>（2）本地存储是永久保存，登录态类信息希望在页面刷新的时候发请求去服务器验证登录状态，而不是永久保存。</li></ul></li></ol> <p>把从服务器获取的一些不经常更新的数据（但是需要刷新页面时重新获取。如果刷新页面也不需要重新获取[指定过期时间]本地存储即可），存储到公共状态里，这样路由组件切换没必要每一次都从服务器获取了，这样可以提高性能
+1.</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/strongCacheAndNegotiationCache.html" class="prev">
+        浏览器的强缓存和协商缓存
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.b791c0bc.js" defer></script><script src="/assets/js/2.d4667c1a.js" defer></script><script src="/assets/js/6.a6c9f08a.js" defer></script>
+  </body>
+</html>

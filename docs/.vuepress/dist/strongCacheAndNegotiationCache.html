@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>浏览器的强缓存和协商缓存 | 蒋冠的博客</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    <link rel="icon" href="/blogs.png">
+    <meta name="description" content="我的个人技术博客">
+    <link rel="preload" href="/assets/css/0.styles.f3ed8526.css" as="style"><link rel="preload" href="/assets/js/app.b791c0bc.js" as="script"><link rel="preload" href="/assets/js/2.d4667c1a.js" as="script"><link rel="preload" href="/assets/js/8.50c32000.js" as="script"><link rel="prefetch" href="/assets/js/3.48ee14ba.js"><link rel="prefetch" href="/assets/js/4.f9f58974.js"><link rel="prefetch" href="/assets/js/5.a88921c4.js"><link rel="prefetch" href="/assets/js/6.a6c9f08a.js"><link rel="prefetch" href="/assets/js/7.f00e1e3f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f3ed8526.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">蒋冠的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>HTML和CSS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>原生JS</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/strongCacheAndNegotiationCache.html" aria-current="page" class="active sidebar-link">浏览器的强缓存和协商缓存</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/strongCacheAndNegotiationCache.html#浏览器缓存分为强缓存和协商缓存两种。" class="sidebar-link">浏览器缓存分为强缓存和协商缓存两种。</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/strongCacheAndNegotiationCache.html#一、强缓存-页面在发送某个请求时-浏览器会直接从本地缓存中获取对应资源-然后响应这个请求。强缓存是到不了后端的。" class="sidebar-link">一、强缓存：页面在发送某个请求时，浏览器会直接从本地缓存中获取对应资源，然后响应这个请求。强缓存是到不了后端的。</a></li><li class="sidebar-sub-header"><a href="/strongCacheAndNegotiationCache.html#二、协商缓存-如果没有命中-不符合-强缓存-才会有可能走协商缓存。请求发送到了后端-但是请求的数据没有变化-后端告诉前端这个请求可以使用缓存。状态码是304。" class="sidebar-link">二、协商缓存：如果没有命中（不符合）强缓存，才会有可能走协商缓存。请求发送到了后端，但是请求的数据没有变化，后端告诉前端这个请求可以使用缓存。状态码是304。</a></li></ul></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="浏览器的强缓存和协商缓存"><a href="#浏览器的强缓存和协商缓存" class="header-anchor">#</a> 浏览器的强缓存和协商缓存</h1> <h2 id="浏览器缓存分为强缓存和协商缓存两种。"><a href="#浏览器缓存分为强缓存和协商缓存两种。" class="header-anchor">#</a> 浏览器缓存分为强缓存和协商缓存两种。</h2> <h3 id="一、强缓存-页面在发送某个请求时-浏览器会直接从本地缓存中获取对应资源-然后响应这个请求。强缓存是到不了后端的。"><a href="#一、强缓存-页面在发送某个请求时-浏览器会直接从本地缓存中获取对应资源-然后响应这个请求。强缓存是到不了后端的。" class="header-anchor">#</a> 一、强缓存：页面在发送某个请求时，浏览器会直接从本地缓存中获取对应资源，然后响应这个请求。强缓存是到不了后端的。</h3> <ol><li>它有两个重要的参数：</li></ol> <ul><li>（1）Expires：过期时间。这个时间之前的请求都会直接从本地缓存获取。</li> <li>（2）cache-control: max-age=[数字]：max-age表示缓存的有效时间，单位是秒；</li></ul> <ol start="2"><li>优点：</li></ol> <ul><li>（1）由于请求并没有发送给服务器，所以大大减轻了服务器的压力。</li> <li>（2）同样是因为上述原因，强缓存的响应速度会比较快（对比向后端请求）；</li></ul> <ol start="3"><li>缺点：</li></ol> <ul><li>（1）由于请求被浏览器拦截了下来，所以强缓存的数据会存在更新不及时的问题。</li></ul> <ol start="4"><li>如何避免使用强缓存：</li></ol> <ul><li>解决办法很简单，每次请求时都在请求的链接后面添加一个问号传参，参数是一串随机的字符。浏览器会认为是不同的地址，所以不会走强缓存。</li></ul> <h3 id="二、协商缓存-如果没有命中-不符合-强缓存-才会有可能走协商缓存。请求发送到了后端-但是请求的数据没有变化-后端告诉前端这个请求可以使用缓存。状态码是304。"><a href="#二、协商缓存-如果没有命中-不符合-强缓存-才会有可能走协商缓存。请求发送到了后端-但是请求的数据没有变化-后端告诉前端这个请求可以使用缓存。状态码是304。" class="header-anchor">#</a> 二、协商缓存：如果没有命中（不符合）强缓存，才会有可能走协商缓存。请求发送到了后端，但是请求的数据没有变化，后端告诉前端这个请求可以使用缓存。状态码是304。</h3> <ol><li>协商缓存也有两个字段：
+-（1）last-modified/if-modified-since：last-modified是后端生成的一个时间，其实就是当前请求对应的内容最后一次更新的时间；下次请求请求头中会带上if-modified-since这个属性，值是last-modified对应的值。后端进行比对，值相同则返回304浏览器走缓存，值不同则返回200，后端给前端返回响应的数据。
+-（2）etag/if-none-match：是后端生产的hash字符串，一次请求之后，后端会给我们返回这个字符，下一次请求的时候，浏览器会在请求头中添加一个 if-none-match 的属性，这个属性对应的值就是后端给的etag对应的值。后端发现 if-none-match 的属性值与后端的etag字段的值相同时，表示数据并没有发生变化，后端返回304。</li> <li>1</li></ol></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/darkmode.html" class="prev">
+        一行 CSS 为网页添加暗黑模式支持
+      </a></span> <span class="next"><a href="/Vuex&amp;Reudx'sApplication.html">
+        Vuex和Reudx的公共状态管理的应用场景
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.b791c0bc.js" defer></script><script src="/assets/js/2.d4667c1a.js" defer></script><script src="/assets/js/8.50c32000.js" defer></script>
+  </body>
+</html>
